@@ -116,34 +116,19 @@ public class MainActivity extends AppCompatActivity {
          */
         private void autoPlayVideo(RecyclerView recyclerView, VideoTagEnum handleVideoTag) {
 
-            if (isWifi(context)) {
-                for (int i = 0; i < visibleCount; i++) {
-                    if (recyclerView != null && recyclerView.getChildAt(i) != null && recyclerView.getChildAt(i).findViewById(R.id.videoplayer) != null) {
-                        MyJzvdStd homeGSYVideoPlayer = (MyJzvdStd) recyclerView.getChildAt(i).findViewById(R.id.videoplayer);
-                        Rect rect = new Rect();
-                        homeGSYVideoPlayer.getLocalVisibleRect(rect);
-                        int videoheight = homeGSYVideoPlayer.getHeight();
-                        if (rect.top == 0 && rect.bottom == videoheight) {
-                            handleVideo(handleVideoTag, homeGSYVideoPlayer);
-                            // 跳出循环，只处理可见区域内的第一个播放器
-                            break;
-                        }
+            for (int i = 0; i < visibleCount; i++) {
+                if (recyclerView != null && recyclerView.getChildAt(i) != null && recyclerView.getChildAt(i).findViewById(R.id.videoplayer) != null) {
+                    MyJzvdStd homeGSYVideoPlayer = (MyJzvdStd) recyclerView.getChildAt(i).findViewById(R.id.videoplayer);
+                    Rect rect = new Rect();
+                    homeGSYVideoPlayer.getLocalVisibleRect(rect);
+                    int videoheight = homeGSYVideoPlayer.getHeight();
+                    if (rect.top == 0 && rect.bottom == videoheight) {
+                        handleVideo(handleVideoTag, homeGSYVideoPlayer);
+                        // 跳出循环，只处理可见区域内的第一个播放器
+                        break;
                     }
                 }
-            } else {
-
             }
-        }
-
-        private static boolean isWifi(Context mContext) {
-            ConnectivityManager connectivityManager = (ConnectivityManager) mContext
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo activeNetInfo = connectivityManager.getActiveNetworkInfo();
-            if (activeNetInfo != null
-                    && activeNetInfo.getType() == ConnectivityManager.TYPE_WIFI) {
-                return true;
-            }
-            return false;
         }
 
         /**
