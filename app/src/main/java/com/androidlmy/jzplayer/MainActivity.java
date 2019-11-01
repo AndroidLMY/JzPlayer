@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 case RecyclerView.SCROLL_STATE_IDLE://停止滚动
                     autoPlayVideo(recyclerView, VideoTagEnum.TAG_AUTO_PLAY_VIDEO);
                 default:
-                    autoPlayVideo(recyclerView, VideoTagEnum.TAG_PAUSE_VIDEO);
+//                    autoPlayVideo(recyclerView, VideoTagEnum.TAG_PAUSE_VIDEO);//滑动时暂停视频 需要可以加上
                     break;
             }
 
